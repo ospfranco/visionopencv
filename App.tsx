@@ -1,15 +1,17 @@
 import React, {useEffect} from 'react';
+import {StyleSheet, useWindowDimensions} from 'react-native';
 import 'react-native-reanimated';
-import {Platform, StyleSheet, useWindowDimensions} from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
 import {
   Camera,
-  useFrameProcessor,
-  useCameraDevice,
   VisionCameraProxy,
+  useCameraDevice,
+  useFrameProcessor,
 } from 'react-native-vision-camera';
-import {useSharedValue, useAnimatedStyle} from 'react-native-reanimated';
 import {Worklets} from 'react-native-worklets-core';
-import Animated from 'react-native-reanimated';
 
 const plugin = VisionCameraProxy.initFrameProcessorPlugin('objectDetect');
 
@@ -41,7 +43,6 @@ function App() {
   const frameProcessor = useFrameProcessor(frame => {
     'worklet';
     const rectangle = objectDetect(frame);
-    console.log(rectangle);
 
     const xFactor = dimensions.width / frame.width;
     const yFactor = dimensions.height / frame.height;
