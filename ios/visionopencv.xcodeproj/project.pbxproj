@@ -13,7 +13,6 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7072AB502B873ABF0081D53C /* OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7072AB4F2B873ABF0081D53C /* OpenCV.mm */; };
-		7072AB582B8741DB0081D53C /* RCTOpenCVModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7072AB572B8741DB0081D53C /* RCTOpenCVModule.mm */; };
 		7072AB5B2B8745C30081D53C /* ObjectDetectorPlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7072AB5A2B8745C30081D53C /* ObjectDetectorPlugin.mm */; };
 		7699B88040F8A987B510C191 /* libPods-visionopencv-visionopencvTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-visionopencv-visionopencvTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -46,8 +45,6 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-visionopencv.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-visionopencv.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7072AB4F2B873ABF0081D53C /* OpenCV.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCV.mm; sourceTree = "<group>"; };
 		7072AB512B873B090081D53C /* OpenCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCV.h; sourceTree = "<group>"; };
-		7072AB572B8741DB0081D53C /* RCTOpenCVModule.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RCTOpenCVModule.mm; sourceTree = "<group>"; };
-		7072AB592B8741E80081D53C /* RCTOpenCVModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTOpenCVModule.h; sourceTree = "<group>"; };
 		7072AB5A2B8745C30081D53C /* ObjectDetectorPlugin.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjectDetectorPlugin.mm; sourceTree = "<group>"; };
 		7072AB5C2B876A350081D53C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = visionopencv/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -103,8 +100,6 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				7072AB4F2B873ABF0081D53C /* OpenCV.mm */,
 				7072AB512B873B090081D53C /* OpenCV.h */,
-				7072AB572B8741DB0081D53C /* RCTOpenCVModule.mm */,
-				7072AB592B8741E80081D53C /* RCTOpenCVModule.h */,
 				7072AB5A2B8745C30081D53C /* ObjectDetectorPlugin.mm */,
 				7072AB5C2B876A350081D53C /* PrefixHeader.pch */,
 			);
@@ -409,7 +404,6 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				7072AB502B873ABF0081D53C /* OpenCV.mm in Sources */,
-				7072AB582B8741DB0081D53C /* RCTOpenCVModule.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				7072AB5B2B8745C30081D53C /* ObjectDetectorPlugin.mm in Sources */,
 			);
