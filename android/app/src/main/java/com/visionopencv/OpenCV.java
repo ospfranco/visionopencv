@@ -25,8 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import androidx.camera.core.ImageProxy;
-
 public class OpenCV {
     static Map<String, Object> findObjects(Mat matRGB) {
         Scalar lowerBound = new Scalar(90, 120, 120);
