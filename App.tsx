@@ -1,118 +1,90 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, {useEffect} from 'react';
+import 'react-native-reanimated';
+import {Platform, StyleSheet, useWindowDimensions} from 'react-native';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+  Camera,
+  useFrameProcessor,
+  useCameraDevice,
+  VisionCameraProxy,
+} from 'react-native-vision-camera';
+import {useSharedValue, useAnimatedStyle} from 'react-native-reanimated';
+import {Worklets} from 'react-native-worklets-core';
+import Animated from 'react-native-reanimated';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const plugin = VisionCameraProxy.initFrameProcessorPlugin('objectDetect');
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+function objectDetect(frame: any): any {
+  'worklet';
+  if (plugin == null) {
+    throw new Error('Failed to load Frame Processor Plugin "objectDetect"!');
+  }
+  return plugin.call(frame);
 }
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+function App() {
+  const flag = useSharedValue({height: 20, left: 30, top: 30, width: 20});
+  const updateSharedValue = Worklets.createRunInJsFn(v => {
+    flag.value = v;
+  });
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  const flagOverlayStyle = useAnimatedStyle(
+    () => ({
+      backgroundColor: 'green',
+      position: 'absolute',
+      ...flag.value,
+    }),
+    [flag],
+  );
+
+  const dimensions = useWindowDimensions();
+
+  const frameProcessor = useFrameProcessor(frame => {
+    'worklet';
+    const rectangle = objectDetect(frame);
+    console.log(rectangle);
+
+    const xFactor =
+      dimensions.width / (Platform.OS === 'ios' ? frame.width : frame.height);
+    const yFactor =
+      dimensions.height / (Platform.OS === 'ios' ? frame.height : frame.width);
+
+    if (rectangle && rectangle.x) {
+      updateSharedValue({
+        height: rectangle.height * yFactor,
+        left: rectangle.x * xFactor,
+        top: rectangle.y * yFactor,
+        width: rectangle.width * xFactor,
+      });
+    } else {
+      updateSharedValue({height: 0, left: 0, top: 0, width: 0});
+    }
+  }, []);
+
+  const device = useCameraDevice('back');
+
+  useEffect(() => {
+    const checkPermissions = async () => {
+      await Camera.requestCameraPermission();
+    };
+    checkPermissions();
+  }, []);
+
+  if (device == null) {
+    return null;
+  }
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+    <>
+      <Camera
+        frameProcessor={frameProcessor}
+        style={StyleSheet.absoluteFill}
+        device={device}
+        isActive={true}
+        orientation="portrait"
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+      <Animated.View style={flagOverlayStyle} />
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
