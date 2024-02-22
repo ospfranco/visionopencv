@@ -122,23 +122,3 @@
 }
 
 @end
-//
-//void install_opencv(facebook::jsi::Runtime &rt) {
-//  auto myPlugin = [=](jsi::Runtime& runtime,
-//                      const jsi::Value& thisArg,
-//                      const jsi::Value* args,
-//                      size_t count) -> jsi::Value {
-//    auto frame = args[0].asObject(runtime).asHostObject<FrameHostObject>(runtime);
-//    // Unwrap the Frame, then do your Frame Processing here, and return any JSI value as a result.
-//    // For example, you can run very efficient OpenCV tasks here.
-//    return {};
-//  };
-//  // 3. Wrap C++ func in jsi::Function
-//  auto jsiFunc = jsi::Function::createFromHostFunction(rt,
-//                                                       jsi::PropNameID::forUtf8(rt,
-//                                                                                "myCppPlugin"),
-//                                                       1,
-//                                                       myPlugin);
-//  
-//    rt.global().setProperty(rt, "ObjectDetectorFrameProcessor", std::move(jsiFunc));
-//}

@@ -17,6 +17,4 @@
   + (NSDictionary *) findObjects:(UIImage *)image;
 @end
 
-//void install_opencv(facebook::jsi::Runtime &rt);
-
 #endif /* OpenCV_h */

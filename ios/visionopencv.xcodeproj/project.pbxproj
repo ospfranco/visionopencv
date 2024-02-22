@@ -49,6 +49,7 @@
 		7072AB572B8741DB0081D53C /* RCTOpenCVModule.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RCTOpenCVModule.mm; sourceTree = "<group>"; };
 		7072AB592B8741E80081D53C /* RCTOpenCVModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTOpenCVModule.h; sourceTree = "<group>"; };
 		7072AB5A2B8745C30081D53C /* ObjectDetectorPlugin.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjectDetectorPlugin.mm; sourceTree = "<group>"; };
+		7072AB5C2B876A350081D53C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = visionopencv/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-visionopencv-visionopencvTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-visionopencv-visionopencvTests.release.xcconfig"; path = "Target Support Files/Pods-visionopencv-visionopencvTests/Pods-visionopencv-visionopencvTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -105,6 +106,7 @@
 				7072AB572B8741DB0081D53C /* RCTOpenCVModule.mm */,
 				7072AB592B8741E80081D53C /* RCTOpenCVModule.h */,
 				7072AB5A2B8745C30081D53C /* ObjectDetectorPlugin.mm */,
+				7072AB5C2B876A350081D53C /* PrefixHeader.pch */,
 			);
 			name = visionopencv;
 			sourceTree = "<group>";

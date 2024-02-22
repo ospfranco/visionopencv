@@ -1,9 +1,11 @@
 package com.visionopencv
 
+import android.util.Log
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
 import com.facebook.react.defaults.DefaultReactActivityDelegate
+import org.opencv.android.OpenCVLoader
 
 class MainActivity : ReactActivity() {
 
@@ -19,4 +21,13 @@ class MainActivity : ReactActivity() {
    */
   override fun createReactActivityDelegate(): ReactActivityDelegate =
       DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)
+
+    companion object {
+        init {
+
+                if(OpenCVLoader.initLocal()) {
+                    Log.d("Test","OpenCV loaded")
+                }
+        }
+    }
 }

@@ -23,7 +23,7 @@ function objectDetect(frame: any): any {
 
 function App() {
   const flag = useSharedValue({height: 20, left: 30, top: 30, width: 20});
-  const updateSharedValue = Worklets.createRunInJsFn(v => {
+  const updateSharedValue = Worklets.createRunInJsFn((v: any) => {
     flag.value = v;
   });
 
@@ -43,10 +43,8 @@ function App() {
     const rectangle = objectDetect(frame);
     console.log(rectangle);
 
-    const xFactor =
-      dimensions.width / (Platform.OS === 'ios' ? frame.width : frame.height);
-    const yFactor =
-      dimensions.height / (Platform.OS === 'ios' ? frame.height : frame.width);
+    const xFactor = dimensions.width / frame.width;
+    const yFactor = dimensions.height / frame.height;
 
     if (rectangle && rectangle.x) {
       updateSharedValue({
